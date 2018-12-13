@@ -1,8 +1,6 @@
 # Yabeda::Gruf
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/yabeda/gruf`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Metrics for gruf.
 
 ## Installation
 
@@ -16,13 +14,16 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install yabeda-gruf
-
 ## Usage
 
-TODO: Write usage instructions here
+Add `Yabeda::Gruf::ServerInterceptor` in gruf configuration.
+Preferably at the beginning of interceptor chain.
+
+```ruby
+Gruf.configure do |c|
+  c.interceptors.use(Yabeda::Gruf::ServerInterceptor)
+end
+```
 
 ## Development
 
@@ -32,4 +33,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/yabeda-gruf.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Boostcom/yabeda-gruf.
