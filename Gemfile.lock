@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    yabeda-gruf (0.1.0)
+    yabeda-gruf (1.0.0)
       gruf
       yabeda
 
@@ -96,4 +96,4 @@ DEPENDENCIES
   yabeda-gruf!
 
 BUNDLED WITH
-   1.16.4
+   1.17.2
