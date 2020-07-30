@@ -1,42 +1,43 @@
 PATH
   remote: .
   specs:
-    yabeda-gruf (1.0.0)
-      gruf
+    yabeda-gruf (1.1.0)
+      gruf (>= 2.7.0)
       yabeda
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.2)
+    activesupport (6.0.3.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
     ast (2.4.0)
     byebug (10.0.2)
     coderay (1.1.2)
-    concurrent-ruby (1.1.3)
+    concurrent-ruby (1.1.6)
     diff-lcs (1.3)
-    dry-initializer (2.5.0)
-    google-protobuf (3.6.1)
-    googleapis-common-protos-types (1.0.2)
-      google-protobuf (~> 3.0)
-    grpc (1.17.0)
-      google-protobuf (~> 3.1)
-      googleapis-common-protos-types (~> 1.0.0)
-    grpc-tools (1.17.0)
-    gruf (2.5.1)
-      activesupport
-      concurrent-ruby
+    dry-initializer (3.0.3)
+    google-protobuf (3.12.4)
+    googleapis-common-protos-types (1.0.5)
+      google-protobuf (~> 3.11)
+    grpc (1.30.2)
+      google-protobuf (~> 3.12)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.30.2)
+    gruf (2.8.1)
+      activesupport (> 4)
+      concurrent-ruby (> 1)
       grpc (~> 1.10)
       grpc-tools (~> 1.10)
       slop (~> 4.6)
-    i18n (1.2.0)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.1)
     method_source (0.9.0)
-    minitest (5.11.3)
+    minitest (5.14.1)
     parallel (1.12.1)
     parser (2.5.1.2)
       ast (~> 2.4.0)
@@ -73,20 +74,21 @@ GEM
     rubocop-rspec (1.24.0)
       rubocop (>= 0.53.0)
     ruby-progressbar (1.9.0)
-    slop (4.6.2)
+    slop (4.8.2)
     thread_safe (0.3.6)
-    tzinfo (1.2.5)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.4.0)
-    yabeda (0.1.2)
+    yabeda (0.6.1)
       concurrent-ruby
       dry-initializer
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16)
+  bundler (~> 2.1)
   pry
   pry-byebug
   rake (~> 10.0)
@@ -96,4 +98,4 @@ DEPENDENCIES
   yabeda-gruf!
 
 BUNDLED WITH
-   1.17.2
+   2.1.4

@@ -16,12 +16,15 @@ And then execute:
 
 ## Usage
 
-Add `Yabeda::Gruf::ServerInterceptor` in gruf configuration.
+Before server starts, `Yabeda.configure!` will be executed!
+
+Add `Yabeda::Gruf::ServerInterceptor` and `Yabeda::Gruf::ServerHook` in gruf configuration.
 Preferably at the beginning of interceptor chain.
 
 ```ruby
 Gruf.configure do |c|
   c.interceptors.use(Yabeda::Gruf::ServerInterceptor)
+  c.hooks.use(Yabeda::Gruf::ServerHook)
 end
 ```
 

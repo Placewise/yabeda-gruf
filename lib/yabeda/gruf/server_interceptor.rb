@@ -19,8 +19,8 @@ module Yabeda
 
         l = labels(response, error)
 
-        Yabeda.gruf_served_requests_total.increment(l)
-        Yabeda.gruf_served_request_duration.measure(l, stop_time - start_time)
+        Yabeda.gruf.served_requests_total.increment(l)
+        Yabeda.gruf.served_request_duration.measure(l, stop_time - start_time)
 
         raise error if error
         response

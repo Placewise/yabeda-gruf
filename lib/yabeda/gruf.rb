@@ -5,6 +5,8 @@ require 'yabeda'
 require 'gruf'
 
 require 'yabeda/gruf/server_interceptor'
+require 'yabeda/gruf/server_hook'
+require 'yabeda/gruf/stats_collector'
 
 module Yabeda
   module Gruf
@@ -14,6 +16,8 @@ module Yabeda
     ].freeze
 
     class << self
+      attr_accessor :gruf_server
+
       def install!
         configure_yabeda!
       end
@@ -22,12 +26,24 @@ module Yabeda
 
       def configure_yabeda!
         Yabeda.configure do
-          group :gruf
+          group :gruf do
 
-          # server
-          counter   :served_requests_total, comment: 'A counter of the total number of gRPC requests processed.'
-          histogram :served_request_duration, unit: :seconds, buckets: LONG_RUNNING_REQUEST_BUCKETS,
-                                              comment: 'A histogram of the response latency.'
+            # server interceptor
+            counter   :served_requests_total, comment: 'A counter of the total number of gRPC requests processed.'
+            histogram :served_request_duration, unit: :seconds, buckets: LONG_RUNNING_REQUEST_BUCKETS,
+                                                comment: 'A histogram of the response latency.'
+
+            # server collector
+            gauge :pool_jobs_waiting_total, comment: 'Number of jobs in thread pool waiting'
+            gauge :pool_ready_workers_total, comment: 'Number of non-busy workers in thread pool'
+            gauge :pool_workers_total, comment: 'Total number of workers in thread pool'
+            gauge :pool_initial_size, comment: 'Initial size of thread pool'
+            gauge :poll_period, comment: 'Polling period for thread pool'
+          end
+
+          collect do
+            Yabeda::Gruf::StatsCollector.new.collect! if Yabeda::Gruf.gruf_server
+          end
         end
       end
     end

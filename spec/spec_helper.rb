@@ -3,6 +3,8 @@
 require 'bundler/setup'
 require 'yabeda/gruf'
 
+Yabeda.configure!
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
