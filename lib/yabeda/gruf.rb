@@ -14,6 +14,7 @@ module Yabeda
       0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10, # standard
       30, 60, 120, 300, 600, # Sometimes requests may be really long-running
     ].freeze
+    REQUEST_LABELS = %i[grpcService grpcMethod grpcStatus status].freeze
 
     class << self
       attr_accessor :gruf_server
@@ -27,11 +28,13 @@ module Yabeda
       def configure_yabeda!
         Yabeda.configure do
           group :gruf do
-
             # server interceptor
-            counter   :served_requests_total, comment: 'A counter of the total number of gRPC requests processed.'
+            counter   :served_requests_total,
+                      comment: 'A counter of the total number of gRPC requests processed.',
+                      tags: REQUEST_LABELS
             histogram :served_request_duration, unit: :seconds, buckets: LONG_RUNNING_REQUEST_BUCKETS,
-                                                comment: 'A histogram of the response latency.'
+                                                comment: 'A histogram of the response latency.',
+                                                tags: REQUEST_LABELS
 
             # server collector
             gauge :pool_jobs_waiting_total, comment: 'Number of jobs in thread pool waiting'

@@ -3,7 +3,6 @@
 module Yabeda
   module Gruf
     class StatsCollector
-
       def collect!
         return unless server
 
